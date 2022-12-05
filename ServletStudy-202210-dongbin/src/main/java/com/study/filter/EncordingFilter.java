@@ -21,11 +21,11 @@ public class EncordingFilter extends HttpFilter implements Filter {
 	public void destroy() {
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest hsr = (HttpServletRequest) request; // 업캐스팅 
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException { // 업캐스팅
+		HttpServletRequest hsr = (HttpServletRequest) request; // 다운캐스팅 
 		
-		if(hsr.getMethod().equalsIgnoreCase("POST")) { // 대소문자 구분없이 비교하겠다
-			request.setCharacterEncoding(StandardCharsets.UTF_8.name());
+		if(hsr.getMethod().equalsIgnoreCase("POST")) { // 대소문자 구분없이 비교하겠다 
+			request.setCharacterEncoding(StandardCharsets.UTF_8.name()); // post요청이라면 UTF-8로 적용해라 아니라면 NO
 		}
 		// 전처
 		chain.doFilter(request, response); // chain = 서블릿 
